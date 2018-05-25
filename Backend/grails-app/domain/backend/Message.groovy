@@ -7,4 +7,9 @@ class Message {
 
     static constraints = {
     }
+
+    Message(User user, String text) {
+        this.user = user
+        this.text = text
+    }
 }
