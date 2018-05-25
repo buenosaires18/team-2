@@ -7,6 +7,7 @@ class Publication {
     String description
     String company
     User   user
+    Chat   chat
 
     static constraints = {
     }
@@ -17,5 +18,6 @@ class Publication {
         this.description    = description
         this.company        = company
         this.user           = user
+        this.chat           = new Chat(this)
     }
 }
