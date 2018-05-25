@@ -15,3 +15,4 @@ class User {
         this.facebookUsername   = facebookUsername
     }
 }
+
