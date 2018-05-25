@@ -1,4 +1,4 @@
-package cfgproject
+package backend
 
 class UrlMappings {
 
