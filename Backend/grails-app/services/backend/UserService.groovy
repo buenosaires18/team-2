@@ -22,4 +22,8 @@ class UserService {
         else
             recovered.username == user.username
     }
+
+    def getUser(long userId) {
+        User.findById(userId)
+    }
 }

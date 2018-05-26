@@ -10,7 +10,7 @@ class PublicationService {
     }
 
     def savePublication(Publication publication) {
-        publication.save()
+        publication.save(flush: true)
     }
 
     def getPublications(List<Publication> publicationList) {
