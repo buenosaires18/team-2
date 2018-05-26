@@ -36,12 +36,12 @@ class ChatController  extends RestfulController<Chat> {
 
     //   get "/chat/$idUser1/$idUser2"
     def chatBetweenUsers(){
-        chatService.getChatBetweenUsers(params.idUser1, params.idUser2)
+        respond chatService.getChatBetweenUsers(params.idUser1, params.idUser2)
     }
 
     //   get "/chat/$idUser1"
     def chatUsers(){
-        chatService.getAllChatsOfUser(params.idUser1)
+        respond chatService.getAllChatsOfUser(params.idUser1)
     }
 
     def hasAnyErrors(Object unObjeto){
