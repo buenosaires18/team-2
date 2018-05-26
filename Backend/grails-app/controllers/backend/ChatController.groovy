@@ -18,19 +18,14 @@ class ChatController  extends RestfulController<Chat> {
     def addMessageToChatPublication(Message aMessage) {
         if (!hasAnyErrors(aMessage)) {
             chatService.addMessagetoChat(aMessage,params.publicationId)
-            render status: 200
-        } else {
-            render status: 400
         }
     }
 
     //   post "/chat/$idUser1/$idUser2"
-    def messageToUser(Message aMessage){
+    def messageToUser(MessageDTO aMessage) {
         if (!hasAnyErrors(aMessage)) {
+            messageService.getMessage(aMessage.id)
             chatService.addMessageToUsersChat(params.idUser1, params.idUser2, aMessage)
-            render status: 200
-        } else {
-            render status: 400
         }
     }
 
