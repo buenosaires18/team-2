@@ -1,22 +1,22 @@
 package backend
 
 import grails.converters.JSON
+import grails.test.hibernate.HibernateSpec
 import grails.testing.web.controllers.ControllerUnitTest
 import groovy.json.JsonBuilder
-import spock.lang.Specification
 
-class ChatControllerSpec extends Specification implements ControllerUnitTest<ChatController> {
+class ChatControllerSpec extends HibernateSpec implements ControllerUnitTest<ChatController> {
 
 
-    ChatService     mockChatService
-    def             unJsonBuilder
+    ChatService chatService
+    def         unJsonBuilder
 
     def setup(){
 
-        unJsonBuilder= new JsonBuilder()
+        unJsonBuilder = new JsonBuilder()
 
-        mockChatService = Mock(ChatService)
-        controller.chatService      =  mockChatService
+        chatService = new ChatService()
+        controller.chatService      =  chatService
 
     }
 
@@ -24,12 +24,13 @@ class ChatControllerSpec extends Specification implements ControllerUnitTest<Cha
         given:
 
         def aMessage = unJsonBuilder {
-            user "pepita"
+            user "1"
             text "I like this"
         } as JSON
 
         request.setJSON(aMessage)
         request.setMethod("POST")
+        params.publicationId
 
         when:
         controller.addMessageToChatPublication()
