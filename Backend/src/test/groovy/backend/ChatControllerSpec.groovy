@@ -8,54 +8,57 @@ import spock.lang.Specification
 class ChatControllerSpec extends Specification implements ControllerUnitTest<ChatController> {
 
 
-        ChatService     mockChatService
-        def             unJsonBuilder
+    ChatService     mockChatService
+    def             unJsonBuilder
 
-        def setup(){
+    def setup(){
 
-            unJsonBuilder= new JsonBuilder()
+        unJsonBuilder= new JsonBuilder()
 
-            mockChatService = Mock(ChatService)
-            controller.chatService      =  mockChatService
+        mockChatService = Mock(ChatService)
+        controller.chatService      =  mockChatService
 
-        }
+    }
 
-        def 'given a correct Message the response is positive'() {
-            given:
+    def 'given a correct Message the response is positive'() {
+        given:
 
-            def aMessage = unJsonBuilder {
-                user "pepita"
-                text "I like this"
-            } as JSON
+        def aMessage = unJsonBuilder {
+            user "pepita"
+            text "I like this"
+        } as JSON
 
-            request.setJSON(aMessage)
-            request.setMethod("POST")
+        request.setJSON(aMessage)
+        request.setMethod("POST")
 
-            when:
-            controller.addMessageToChatPublication()
+        when:
+        controller.addMessageToChatPublication()
 
-            then:
-            response.status == 200
+        then:
+        response.status == 200
 
-        }
+    }
 
 
-        def 'given a bad message the response is negative '() {
-            given:
+    def 'given a bad message the response is negative '() {
+        given:
 
-            def aMessage = unJsonBuilder {
-                asdasd "pepita"
-                texdasdat "I like this"
-            } as JSON
+        def aMessage = unJsonBuilder {
+            asdasd "pepita"
+            texdasdat "I like this"
+        } as JSON
 
-            request.setJSON(aMessage)
-            request.setMethod("POST")
+        request.setJSON(aMessage)
+        request.setMethod("POST")
 
-            when:
-            controller.addMessageToChatPublication()
+        when:
+        controller.addMessageToChatPublication()
 
-            then:
-            response.status == 400
-        }
+        then:
+        response.status == 400
+    }
+
+
+
 
 }

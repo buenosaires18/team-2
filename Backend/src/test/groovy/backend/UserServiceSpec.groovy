@@ -37,4 +37,30 @@ class UserServiceSpec extends HibernateSpec implements ServiceUnitTest<UserServi
         then:
             thrown(UsernameAlreadyRegistered)
     }
+
+    def "a user follows a new hashtag"() {
+        given:
+        def aHash = new HashTag(name:"Trabajos")
+
+        when:
+        userService.followHashtag(user.id,aHash)
+        def recoveredUser = userService.getUser(user.id)
+        then:
+        !recoveredUser.hashTags.isEmpty()
+    }
+
+    def "all the following hashtags are returned"() {
+        given:
+        def aHash = new HashTag(name:"Trabajos")
+        def anotherHash = new HashTag(name:"Cursos")
+
+        userService.followHashtag(publication.id,aHash)
+        userService.followHashtag(publication.id,anotherHash)
+
+        when:
+        Set<HashTag> recoveredHashs = userService.getAllFollowingHashTags(user.id)
+        then:
+        !recoveredHashs.contains(aHash)
+    }
+
 }

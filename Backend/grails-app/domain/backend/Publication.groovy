@@ -8,10 +8,14 @@ class Publication {
     String company
     User   user
     Chat   chat
+    Set<HashTag> hashTags         = new HashSet<>()
 
     static belongsTo = User
 
     static hasOne = [chat: Chat]
+
+
+    static hasMany = [hashTags: HashTag]
 
     static constraints = {
 //        chat     nullable:true

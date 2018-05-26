@@ -42,12 +42,12 @@ class UserController extends RestfulController<User> {
 
     //get "/$idUser/followingUsers"             (controller:"user"       , action:"followingUsers")
     def followingUsers(){
-        respond userService.getAllFollowingUsers(params.idUser)
+        respond userService.getAllFollowedUsersBy(params.idUser)
     }
 
     //post "/$userID/follow/hashtag"            (controller:"user"       , action: "followHashtag")
-    def followHashtag(){
-        userService.followHashtag(params.$userID)
+    def followHashtag(HashTag aHashTag){
+        userService.followHashtag(params.$userID,aHashTag)
     }
 
     //get "/$idUser/following/publications"     (controller:"user"       , action: "followingsHashtag")
@@ -57,7 +57,7 @@ class UserController extends RestfulController<User> {
 
     //get "/$idUser/following/publications"     (controller:"user"       , action: "allPublications")
     def allPublications(){
-        respond userService.getAllPublications(params.idUser)
+        respond userService.getAllFollowedPublications(params.idUser)
     }
 
 

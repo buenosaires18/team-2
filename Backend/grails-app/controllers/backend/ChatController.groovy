@@ -44,6 +44,7 @@ class ChatController  extends RestfulController<Chat> {
         respond chatService.getAllChatsOfUser(params.idUser1)
     }
 
+
     def hasAnyErrors(Object unObjeto){
         def haserrors = unObjeto.hasErrors()
 

@@ -26,4 +26,20 @@ class UserService {
     def getUser(long userId) {
         User.findById(userId)
     }
+
+
+    def followHashtag(long idUser, HashTag aHashTag){
+        def user = getUser(idUser)
+        user.addToHashTags(aHashTag)
+        user.save()
+    }
+
+    def getAllFollowingHashTags(long idUser){
+        def user = getUser(idUser)
+        user.hashTags
+    }
+
+    def getAllFollowedPublications(long idUser){
+
+    }
 }

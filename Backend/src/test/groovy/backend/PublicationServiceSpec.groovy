@@ -33,4 +33,19 @@ class PublicationServiceSpec extends HibernateSpec implements ServiceUnitTest<Pu
             recoveredPublication.user           ==  publication.user
             recoveredPublication.id             !=  null
     }
+
+    def "a Hashtag is added to a publication"() {
+        given:
+        def aHash = new HashTag(name:"Trabajos")
+
+        when:
+        publicationService.addHashTag(publication.id,aHash)
+        def recoveredPublication = publicationService.getPublicationById(publication.id)
+        then:
+        !recoveredPublication.hashTags.isEmpty()
+    }
+
+
+
+
 }

@@ -8,12 +8,13 @@ class User {
     String password
     String facebookUsername
     Set<Publication> publications = new HashSet<>()
+    Set<HashTag> hashTags         = new HashSet<>()
 
     static constraints = {
         username nullable:false, blank:false, unique:true
     }
 
-    static hasMany = [publications: Publication]
+    static hasMany = [publications: Publication, hashTags: HashTag]
 
     User(String username, String fullname, String email, String password, String facebookUsername) {
         this.username           = username
@@ -26,5 +27,8 @@ class User {
     def startPublication(String title, String introduction, String description, String companyName) {
         publications.add(new Publication(title,introduction, description, companyName,this))
     }
+
+
+
 }
 

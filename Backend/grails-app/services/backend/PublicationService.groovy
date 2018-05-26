@@ -21,4 +21,13 @@ class PublicationService {
     def getPublicationById(Long publicationId) {
         Publication.get(publicationId)
     }
+
+    def addHashTag(long publicationID,HashTag unHashTag){
+        def publication = getPublicationById(publicationID)
+        publication.addToHashTags(unHashTag)
+        publication.save()
+    }
+
+
+
 }
