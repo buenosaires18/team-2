@@ -9,7 +9,7 @@ export default class Chat extends Component {
           <Icon name="person" />
         </Left>
         <Body>
-          <Text>{this.props.user.name}</Text>
+          <Text>{this.props.user.username}</Text>
           <Text note>{this.props.text}</Text>
         </Body>
       </ListItem>

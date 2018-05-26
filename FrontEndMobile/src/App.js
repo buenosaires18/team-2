@@ -9,6 +9,7 @@ import LoginPage from "./screens/LoginPage.js";
 import Publication from "./screens/Publication.js";
 import Comments from "./screens/Comments.js";
 import SideBar from "./screens/SideBar.js";
+import AddPublication from "./screens/AddPublication.js";
 
 const Drawer = DrawerNavigator(
   {
@@ -16,6 +17,7 @@ const Drawer = DrawerNavigator(
     LoginPage: { screen: LoginPage },
     Publication: { screen: Publication },
     Comments: { screen: Comments },
+    AddPublication: { screen: AddPublication },
   },
   {
     initialRouteName: "LoginPage",

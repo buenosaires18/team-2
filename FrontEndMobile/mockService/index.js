@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const publications = require('./data/publications');
+
 // const events = require('./data/events');
 // const users = require('./data/users');
 
@@ -13,35 +15,7 @@ router.post('/publication', (req, res) => {
 });
 
 router.get('/publications', (req, res) => {
-  console.log("asd")
-  res.send([{
-    id: 1,
-    title: "1",
-    introduction: "1",
-    description: "1",
-    company: "1",
-    usuario: "1",
-  }, {
-      id: 2,
-      title: "2",
-      introduction: "2",
-      description: "2",
-      company: "2",
-      usuario: "2",
-      chats: [{
-        id: 1,
-        user: {
-          name: "asd"
-        },
-        text: "asdkasdklaskldlas"
-      }, {
-        id: 1,
-        user:  {
-          name: "asd"
-        },
-        text: "asdkasdklaskldlas"
-      }]
-    }]);
+  res.send(publications);
 });
 
 // router.post('/register', (req, res) => {

@@ -38,7 +38,7 @@ const datas = [
   {
     name: "Crear Publicacion",
     route: "AddPublication",
-    icon: "more",
+    icon: "add",
     bg: "#C5F442"
   },
 ];
