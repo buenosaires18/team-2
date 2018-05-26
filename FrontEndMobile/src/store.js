@@ -1,13 +1,15 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import promise from 'redux-promise-middleware';
 
-import publicationReducer from './src/reducers/publicationReducer.js';
-import loginReducer from './src/reducers/loginReducer.js';
+import homeReducer from './reducers/homeReducer.js';
+import loginReducer from './reducers/loginReducer.js';
+import publicationReducer from './reducers/publicationReducer.js';
 
 export default createStore(
   combineReducers({
-    publicationReducer,
+    homeReducer,
     loginReducer,
+    publicationReducer,
   }),
   {},
   applyMiddleware(promise()),

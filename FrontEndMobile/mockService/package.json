@@ -1,0 +1,13 @@
+{
+  "name": "mock-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "lint": "eslint src/*"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  }
+}
