@@ -11,6 +11,7 @@ const app = express();
 app.use(bodyParser.json());
 
 router.post('/publication', (req, res) => {
+  console.log('asd')
   res.send('ok');
 });
 

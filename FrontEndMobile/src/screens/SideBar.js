@@ -41,6 +41,30 @@ const datas = [
     icon: "add",
     bg: "#C5F442"
   },
+  {
+    name: "Notificaciones",
+    route: "ToDoPage",
+    icon: "filing",
+    bg: "#C5F442"
+  },
+  {
+    name: "Chats",
+    route: "ToDoPage",
+    icon: "chatbubbles",
+    bg: "#C5F442"
+  },
+  {
+    name: "Busqueda",
+    route: "ToDoPage",
+    icon: "search",
+    bg: "#C5F442"
+  },
+  {
+    name: "Configuración",
+    route: "ToDoPage",
+    icon: "settings",
+    bg: "#C5F442"
+  },
 ];
 
 export default class SideBar extends Component {
