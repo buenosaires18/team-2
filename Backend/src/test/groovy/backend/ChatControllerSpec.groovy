@@ -1,11 +1,12 @@
 package backend
 
 import grails.converters.JSON
+import grails.test.hibernate.HibernateSpec
 import grails.testing.web.controllers.ControllerUnitTest
 import groovy.json.JsonBuilder
 import spock.lang.Specification
 
-class ChatControllerSpec extends Specification implements ControllerUnitTest<ChatController> {
+class ChatControllerSpec extends HibernateSpec implements ControllerUnitTest<ChatController> {
 
 
     ChatService     mockChatService

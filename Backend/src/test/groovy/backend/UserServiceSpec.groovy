@@ -5,12 +5,14 @@ import grails.testing.services.ServiceUnitTest
 
 class UserServiceSpec extends HibernateSpec implements ServiceUnitTest<UserService>{
 
-    User user
-    UserService userService
+    User               user
+    UserService        userService
+    PublicationService publicationService
 
     def setup() {
         user = new User("HurrellT","Tomás Hurrell","hurrelltomas@gmail.com","pass1234","tlh11")
         userService = new UserService()
+        publicationService = new PublicationService()
     }
 
     def cleanup() {
@@ -76,5 +78,32 @@ class UserServiceSpec extends HibernateSpec implements ServiceUnitTest<UserServi
             def followedUsers = userService.getAllFollowedUsersBy(user.id)
             followedUsers.size() == 2
     }
+
+
+    def "a user service gets all publications containing #jobs hashtag"() {
+        when:
+        userService.registerUser(user)
+        def anotherUser = new User("Pepe","Pepe","pepe@mail.com","1234","pepe17")
+        userService.registerUser(anotherUser)
+
+        def hashtag = new HashTag(name: "Trabajos")
+        def otherhashtag = new HashTag(name: "Traasdbajos")
+
+
+        Publication aPublication = new Publication("pepe","el loco", "pepe", "pepon", anotherUser)
+
+        publicationService.savePublication(aPublication)
+        publicationService.addHashTag(aPublication.id,hashtag )
+        publicationService.addHashTag(aPublication.id,otherhashtag )
+
+        userService.followHashtag(user.id,hashtag)
+        def recoveredPublications = userService.getAllFollowedPublications(user.id)
+
+        then:
+
+        recoveredPublications.size()        == 1
+        recoveredPublications.get(0).title  == "pepe"
+    }
+
 
 }

@@ -39,11 +39,16 @@ class UserService {
         user.hashTags
     }
 
-    def getAllFollowedPublications(long idUser) {
-    }
 
     def getAllFollowedUsersBy(long userId) {
         getUser(userId).following
 
     }
+
+    def getAllFollowedPublications(long idUser) {
+        def userHashtasgs = getUser(idUser).hashTags
+
+        Publication.list().findAll{it.hashTags.any{userHashtasgs}}
+    }
+
 }
