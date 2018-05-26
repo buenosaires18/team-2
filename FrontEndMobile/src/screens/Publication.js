@@ -1,80 +1,50 @@
-import { connect } from 'react-redux';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
-import React from 'react';
-import Hr from "react-native-hr-component";
+import React, { Component } from "react";
+import { List, Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Title } from 'native-base';
 
+import Comments from './Comments'
+import AddComment from './AddComment'
 
-import publicationActions from '../actions/publicationActions';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-class Publish extends React.Component {
-
-  changeBody(newBody) {
-    this.props.changeBody(newBody);
-  }
-
-  changeCompany(newCompany) {
-    this.props.changeCompany(newCompany);
-  }
-  
-  changeDescription(newDescription) {
-    this.props.changeDescription(newDescription);
-  }
-  
-  changeTitle(newTitle) {
-    this.props.changeTitle(newTitle);
-  }
-
-  createEvent() {
-    return {
-      body: this.props.body,
-      description: this.props.description,
-      company: this.props.company,
-      title: this.props.title,
-    }
-  }
-
-  sendPublication() {
-    this.props.sendPublication(this.createEvent()).then(console.log);
-  }
-
+export default class Publication extends Component {
   render() {
+    const { navigation } = this.props;
+    const feed = navigation.getParam('feed', {});
+    const goBack = navigation.getParam('goBack', () => null);
+    const goToComments = navigation.getParam('goToComments', () => null);
     return (
-      <View style={styles.container}>
-        <Text>Crear Publicación</Text>
-        <Hr lineColor="#eee" width={1} text="" />
-        <TextInput placeholder="Titulo" onChangeText={ text => this.changeTitle(text)} />
-        <TextInput placeholder="Descripción" onChangeText={ text => this.changeDescription(text)} />
-        <TextInput placeholder="Cuerpo" onChangeText={ text => this.changeBody(text)} />
-        <TextInput placeholder="Empresa" onChangeText={ text => this.changeCompany(text)} />
-        <Hr lineColor="#eee" width={1} text="" />
-        <Button 
-          onPress={() =>this.sendPublication()}
-          title="Learn More"
-          color="#841584" />
-      </View>
+      <Container>
+        <Header>
+          <Left>
+            <Button transparent onPress={() => goBack()}>
+              <Icon name="arrow-back" />
+            </Button>
+          </Left>
+          <Body>
+            <Title>{feed.title}</Title>
+          </Body>
+        </Header>
+        <Content>
+          <Card style={{flex: 0}}>
+            <CardItem>
+              <Left>
+                <Body>
+                  <Text>{feed.company}</Text>
+                  <Text note>26 de Mayo 26 2018</Text>
+                </Body>
+              </Left>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <Text>
+                  {feed.description}
+                </Text>
+              </Body>
+            </CardItem>
+
+          </Card>
+        <Comments chats={feed.chats} />
+        <AddComment />
+        </Content>        
+      </Container>
     );
   }
 }
-
-const mapStateToProps = state => ({
-  title: state.publicationReducer.title,
-  description: state.publicationReducer.description,
-  body: state.publicationReducer.body,
-  company: state.publicationReducer.company,
-});
-
-const mapDispatchToProps = dispatch => ({
-  changeTitle: text => dispatch(publicationActions.changeTitle(text)),
-  changeDescription: text => dispatch(publicationActions.changeDescription(text)),
-  changeBody: text => dispatch(publicationActions.changeBody(text)),
-  changeCompany: text => dispatch(publicationActions.changeCompany(text)),
-  sendPublication: publication => dispatch(publicationActions.sendPublication(publication)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Publish);

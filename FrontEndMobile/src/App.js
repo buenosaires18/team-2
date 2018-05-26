@@ -6,11 +6,15 @@ import store from './store';
 
 import Home from "./screens/Home.js";
 import LoginPage from "./screens/LoginPage.js";
+import Publication from "./screens/Publication.js";
+import Comments from "./screens/Comments.js";
 
 const Drawer = DrawerNavigator(
   {
     Home: { screen: Home },
     LoginPage: { screen: LoginPage },
+    Publication: { screen: Publication },
+    Comments: { screen: Comments },
   },
   {
     initialRouteName: "LoginPage",

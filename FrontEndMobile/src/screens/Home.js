@@ -9,6 +9,13 @@ class Home extends React.Component {
     this.props.getFeed(1)
   }
 
+  goToPublication(feed) {
+    this.props.navigation.navigate("Publication", {
+      feed,
+      goBack: () => this.props.navigation.navigate("Home")
+  });
+  }
+
   render() {
     return (
       <Container>
@@ -24,7 +31,12 @@ class Home extends React.Component {
           <Right />
         </Header>
         <Content>
-          {this.props.feed.map(feed => <PublicationCard feed={feed} />)}
+          {this.props.feed
+            .map(feed => <PublicationCard 
+              feed={feed} 
+              key={feed.id} 
+              onPress={ () => this.goToPublication(feed)} />)
+          }
         </Content>
       </Container>
     );
