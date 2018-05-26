@@ -8,6 +8,7 @@ import Home from "./screens/Home.js";
 import LoginPage from "./screens/LoginPage.js";
 import Publication from "./screens/Publication.js";
 import Comments from "./screens/Comments.js";
+import SideBar from "./screens/SideBar.js";
 
 const Drawer = DrawerNavigator(
   {
@@ -21,7 +22,7 @@ const Drawer = DrawerNavigator(
     contentOptions: {
       activeTintColor: "#e91e63"
     },
-    // contentComponent: props => <SideBar {...props} />
+    contentComponent: () => <SideBar />
   }
 );
 
