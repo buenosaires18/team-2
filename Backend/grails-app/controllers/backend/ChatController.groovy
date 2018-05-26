@@ -23,7 +23,7 @@ class ChatController  extends RestfulController<Chat> {
             render status: 400
         }
     }
-    
+
     //   post "/chat/$idUser1/$idUser2"
     def messageToUser(Message aMessage){
         if (!hasAnyErrors(aMessage)) {

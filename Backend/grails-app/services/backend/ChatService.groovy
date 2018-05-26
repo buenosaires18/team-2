@@ -15,6 +15,8 @@ class ChatService {
     }
 
     def addMessageToChat(Long chatId, Message message) {
-        Chat.get(chatId).addMessage(message)
+        Chat chatRecovered = Chat.get(chatId)
+        chatRecovered.addMessage(message)
+        chatRecovered.save()
     }
 }
