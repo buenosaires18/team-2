@@ -8,6 +8,8 @@ class Chat {
     static constraints = {
     }
 
+//    static belongsTo = [Publication]
+
     Chat(Publication associatedPublication) {
         this.associatedPublication = associatedPublication
     }

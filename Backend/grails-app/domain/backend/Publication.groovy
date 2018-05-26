@@ -6,18 +6,17 @@ class Publication {
     String introduction
     String description
     String company
-    User   user
+    Long   userId
     Chat   chat
 
-    static constraints = {
-    }
+    static constraints = {}
 
     Publication(String title, String introduction, String description, String company, User user) {
         this.title          = title
         this.introduction   = introduction
         this.description    = description
         this.company        = company
-        this.user           = user
+        this.userId         = user.id
         this.chat           = new Chat(this)
     }
 }
