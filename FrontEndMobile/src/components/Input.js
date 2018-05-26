@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Dimensions from 'Dimensions';
-import {StyleSheet, View, TextInput, Image} from 'react-native';
+import {StyleSheet, Button, View, TextInput, Image} from 'react-native';
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 const DEVICE_HEIGHT = Dimensions.get('window').height;
