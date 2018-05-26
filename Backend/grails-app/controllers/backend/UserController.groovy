@@ -35,6 +35,31 @@ class UserController extends RestfulController<User> {
         }
     }
 
+    //post "/$idUser/follow/$idUser2"           (controller:"user"       , action:"followUser")
+    def followUser(){
+        userService.followUser(params.idUser1, params.idUser2)
+    }
+
+    //get "/$idUser/followingUsers"             (controller:"user"       , action:"followingUsers")
+    def followingUsers(){
+        respond userService.getAllFollowingUsers(params.idUser)
+    }
+
+    //post "/$userID/follow/hashtag"            (controller:"user"       , action: "followHashtag")
+    def followHashtag(){
+        userService.followHashtag(params.$userID)
+    }
+
+    //get "/$idUser/following/publications"     (controller:"user"       , action: "followingsHashtag")
+    def followingsHashtag(){
+        respond userService.getAllFollowingHashTags(params.idUser)
+    }
+
+    //get "/$idUser/following/publications"     (controller:"user"       , action: "allPublications")
+    def allPublications(){
+        respond userService.getAllPublications(params.idUser)
+    }
+
 
     def hasAnyErrors(Object unObjeto){
         def haserrors = unObjeto.hasErrors()

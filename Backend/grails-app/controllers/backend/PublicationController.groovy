@@ -33,7 +33,12 @@ class PublicationController  extends RestfulController<Publication> {
 
     // Get => /publications/:publicationId
     def showPublicationById() {
-        publicationService.getByID(params.publicationId)
+        respond publicationService.getByID(params.publicationId)
+    }
+
+    // post    "/$publicationID/hashtag"
+    def hashTag(HashTag unHashTag){
+        publicationService.addHashTag(params.publicationID,unHashTag)
     }
 
 
