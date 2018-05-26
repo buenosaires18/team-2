@@ -37,6 +37,8 @@ class PublicationServiceSpec extends HibernateSpec implements ServiceUnitTest<Pu
 
     def "a Hashtag is added to a publication"() {
         given:
+        user.save()
+        publicationService.savePublication(publication)
         def aHash = new HashTag(name:"Trabajos")
 
         when:
