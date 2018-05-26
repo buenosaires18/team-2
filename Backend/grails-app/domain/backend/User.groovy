@@ -7,10 +7,10 @@ class User {
     String email
     String password
     String facebookUsername
-    List<Publication> publications = []
+    Set<Publication> publications = new HashSet<>()
 
     static constraints = {
-        username unique: true
+        username nullable:false, blank:false, unique:true
     }
 
     static hasMany = [publications: Publication]

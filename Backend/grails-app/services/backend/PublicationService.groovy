@@ -14,10 +14,10 @@ class PublicationService {
     }
 
     def getPublications(List<Publication> publicationList) {
-        Publication.all
+        Publication.list()
     }
 
     def getPublicationById(Long publicationId) {
-        Publication.findById(publicationId)
+        Publication.get(publicationId)
     }
 }
