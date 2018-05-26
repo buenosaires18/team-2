@@ -27,4 +27,5 @@ const executeGet = (path, data) => {
 
 export default {
   sendPublication: publication => executePost(`/publication`, publication),
+  getFeed: userId => executeGet(`${userId}/publications`),
 };
