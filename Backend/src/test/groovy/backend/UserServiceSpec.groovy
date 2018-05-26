@@ -16,7 +16,7 @@ class UserServiceSpec extends HibernateSpec implements ServiceUnitTest<UserServi
     def cleanup() {
     }
 
-    def "A user service can save and recover a user"() {
+   def "A user service can save and recover a user"() {
         when:
             userService.registerUser(user)
         then:
@@ -39,10 +39,11 @@ class UserServiceSpec extends HibernateSpec implements ServiceUnitTest<UserServi
     }
 
 
+
     def "a user follows a new hashtag"() {
         given:
         def aHash = new HashTag(name:"Trabajos")
-
+        user.save()
         when:
         userService.followHashtag(user.id,aHash)
         def recoveredUser = userService.getUser(user.id)
@@ -50,18 +51,19 @@ class UserServiceSpec extends HibernateSpec implements ServiceUnitTest<UserServi
         !recoveredUser.hashTags.isEmpty()
     }
 
+
     def "all the following hashtags are returned"() {
         given:
         def aHash = new HashTag(name:"Trabajos")
         def anotherHash = new HashTag(name:"Cursos")
-
-        userService.followHashtag(publication.id,aHash)
-        userService.followHashtag(publication.id,anotherHash)
+        user.save()
+        userService.followHashtag(user.id,aHash)
+        userService.followHashtag(user.id,anotherHash)
 
         when:
         Set<HashTag> recoveredHashs = userService.getAllFollowingHashTags(user.id)
         then:
-        !recoveredHashs.contains(aHash)
+        recoveredHashs.any{it.name ==  aHash.name}
     }
 
 
@@ -77,6 +79,7 @@ class UserServiceSpec extends HibernateSpec implements ServiceUnitTest<UserServi
             followedUsers.size() == 2
     }
 
+
     def "a user service can show al followed user specific"(){
         when:
             User aOtherUser= new User("Hunter","Tomás Hurrell","hurrelltomas@gmail.com","pass1234","tlh11")
@@ -87,4 +90,5 @@ class UserServiceSpec extends HibernateSpec implements ServiceUnitTest<UserServi
              User recoveredUser = userService.getUser(user.id)
              recoveredUser.following.contains(aOtherUser)
     }
+
 }
