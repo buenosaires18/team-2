@@ -2,7 +2,7 @@
 grails:
     profile: web
     codegen:
-        defaultPackage: cfgproject
+        defaultPackage: backend
     gorm:
         reactor:
             # Whether to translate GORM events into Reactor events
