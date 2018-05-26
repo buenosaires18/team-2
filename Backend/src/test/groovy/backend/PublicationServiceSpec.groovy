@@ -34,6 +34,7 @@ class PublicationServiceSpec extends HibernateSpec implements ServiceUnitTest<Pu
             recoveredPublication.id             !=  null
     }
 
+
     def "a Hashtag is added to a publication"() {
         given:
         def aHash = new HashTag(name:"Trabajos")
@@ -46,6 +47,15 @@ class PublicationServiceSpec extends HibernateSpec implements ServiceUnitTest<Pu
     }
 
 
-
+    def "A publication service can get a list of all publications made"() {
+        when:
+            user.save()
+            publicationService.savePublication(publication)
+            def publication2 = new Publication("Publication2","Publication2 introduction","Description2","Pescar",user)
+            publicationService.savePublication(publication2)
+        then:
+            def recoveredPublications = publicationService.getPublications()
+            recoveredPublications.size() == 2
+    }
 
 }

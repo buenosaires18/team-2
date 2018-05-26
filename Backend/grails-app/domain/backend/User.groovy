@@ -8,7 +8,10 @@ class User {
     String password
     String facebookUsername
     Set<Publication> publications = new HashSet<>()
+
     Set<HashTag> hashTags         = new HashSet<>()
+    Set<User> following = new HashSet<>()
+
 
     static constraints = {
         username nullable:false, blank:false, unique:true
@@ -28,7 +31,9 @@ class User {
         publications.add(new Publication(title,introduction, description, companyName,this))
     }
 
-
+    def startFollowing(User user) {
+        this.following.add(user)
+    }
 
 }
 

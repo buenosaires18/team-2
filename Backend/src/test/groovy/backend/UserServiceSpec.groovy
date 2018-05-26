@@ -38,6 +38,7 @@ class UserServiceSpec extends HibernateSpec implements ServiceUnitTest<UserServi
             thrown(UsernameAlreadyRegistered)
     }
 
+
     def "a user follows a new hashtag"() {
         given:
         def aHash = new HashTag(name:"Trabajos")
@@ -61,6 +62,19 @@ class UserServiceSpec extends HibernateSpec implements ServiceUnitTest<UserServi
         Set<HashTag> recoveredHashs = userService.getAllFollowingHashTags(user.id)
         then:
         !recoveredHashs.contains(aHash)
+    }
+
+
+    def "a user service can show all followed users by another user"() {
+        when:
+            def anotherUser = new User("IvanDom","Ivan Dominikov","ivandom@gmail.com","pass1234","ivandom")
+            def thirdUser = new User("JpM","Juan Pablo Motessi","jpm@gmail.com","pass1234","juanMote")
+            user.startFollowing(anotherUser)
+            user.startFollowing(thirdUser)
+            userService.registerUser(user)
+        then:
+            def followedUsers = userService.getAllFollowedUsersBy(user.id)
+            followedUsers.size() == 2
     }
 
 }

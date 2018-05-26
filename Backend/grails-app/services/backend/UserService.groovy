@@ -39,7 +39,11 @@ class UserService {
         user.hashTags
     }
 
-    def getAllFollowedPublications(long idUser){
+    def getAllFollowedPublications(long idUser) {
+    }
+
+    def getAllFollowedUsersBy(long userId) {
+        getUser(userId).following
 
     }
 }
