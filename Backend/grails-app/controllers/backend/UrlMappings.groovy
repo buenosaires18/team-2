@@ -17,6 +17,24 @@ class UrlMappings {
         post    "/api/login"                      (controller:"user"       , action:"loginUser")
         post    "/register"                       (controller:"user"       , action:"registerUser")
 
+
+        post "/chat/$idUser1/$idUser2"            (controller:"chat"       , action:"messageToUser")
+        get "/chat/$idUser1/$idUser2"             (controller:"chat"       , action:"chatBetweenUsers")
+        get "/chat/$idUser1"                      (controller:"chat"       , action:"chatUsers")
+
+
+        post "/$idUser/follow/$idUser2"           (controller:"user"       , action:"followUser")
+        get "/$idUser/followingUsers"             (controller:"user"       , action:"followingUsers")
+        post "/$userID/follow/hashtag"            (controller:"user"       , action: "followHashtag")
+
+
+        get "/$userID/follow/hashtag"             (controller:"user"       , action: "followHashtag")
+        get "/$idUser/following/publications"     (controller:"user"       , action: "allPublications")
+
+
+        post "/$publicationID/hashtag"            (controller:"publication", action: "addHashTag")
+
+
         "/"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')

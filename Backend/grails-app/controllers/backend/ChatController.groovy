@@ -23,7 +23,26 @@ class ChatController  extends RestfulController<Chat> {
             render status: 400
         }
     }
+    
+    //   post "/chat/$idUser1/$idUser2"
+    def messageToUser(Message aMessage){
+        if (!hasAnyErrors(aMessage)) {
+            chatService.addMessageToUsersChat(params.idUser1, params.idUser2, aMessage)
+            render status: 200
+        } else {
+            render status: 400
+        }
+    }
 
+    //   get "/chat/$idUser1/$idUser2"
+    def chatBetweenUsers(){
+        chatService.getChatBetweenUsers(params.idUser1, params.idUser2)
+    }
+
+    //   get "/chat/$idUser1"
+    def chatUsers(){
+        chatService.getAllChatsOfUser(params.idUser1)
+    }
 
     def hasAnyErrors(Object unObjeto){
         def haserrors = unObjeto.hasErrors()

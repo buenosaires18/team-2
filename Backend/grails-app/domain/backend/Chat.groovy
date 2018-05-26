@@ -3,7 +3,6 @@ package backend
 class Chat {
 
 
-
     Publication  associatedPublication
     Set<Message> messages = new HashSet<>()
 
