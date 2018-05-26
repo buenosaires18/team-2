@@ -1,5 +1,8 @@
 package backend
 
+import grails.rest.RestfulController
+
+
 class PublicationController  extends RestfulController<Publication> {
 
 
@@ -9,10 +12,10 @@ class PublicationController  extends RestfulController<Publication> {
 
 
     PublicationController() {
-        super(Publication)
+        super()
     }
 
-    // Post =>  uri: /publication
+    // Post =>   /publication
 
     def savePublication(Publication aPublication) {
         if (!hasAnyErrors(aPublication)) {
@@ -23,16 +26,16 @@ class PublicationController  extends RestfulController<Publication> {
         }
     }
 
-    // Get =>  /publicaciones
+    // Get =>  /publications
     def allPublications() {
         respond publicationService.getAllPublications()
     }
 
-    // Get => /publicaciones/:idPublicacion
+    // Get => /publications/:publicationId
     def showPublicationById() {
         publicationService.getByID(params.publicationId)
     }
-    
+
 
     def hasAnyErrors(Object unObjeto){
         def haserrors = unObjeto.hasErrors()
