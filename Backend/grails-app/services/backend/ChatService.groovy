@@ -10,7 +10,7 @@ class ChatService {
     }
 
     def getChatByPublicationId(Long publicationId) {
-        Publication.findById(publicationId).chat
+        Publication.get(publicationId).chat
     }
 
     def addMessageToChat(Long chatId, Message message) {
