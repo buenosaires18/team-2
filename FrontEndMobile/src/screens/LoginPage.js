@@ -1,9 +1,10 @@
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { Container, Header, Content, Form, Item, Input, Label, Button, Text } from 'native-base';
 
-export default class LoginForm extends Component {
+class LoginForm extends Component {
 
-  changeEmail(newEmail) {}
+  changeUsername(newEmail) {}
 
   changePassword(newPassword) {}
 
@@ -34,3 +35,10 @@ export default class LoginForm extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+});
+
+const mapDispatchToProps = dispatch => ({
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

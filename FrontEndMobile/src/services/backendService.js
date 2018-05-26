@@ -13,19 +13,12 @@ const executePost = (path, data) => {
 };
 
 const executeGet = (path, data) => {
-  return fetch(`${Config.backendApi}${path}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    })
-    .then(response => response.data)
-    .catch(onError)
+  return fetch(`${Config.backendApi}${path}`).then(response => response.json())
     
 };
 
 export default {
   sendPublication: publication => executePost(`/publication`, publication),
-  getFeed: userId => executeGet(`${userId}/publications`),
+  // getFeed: userId => executeGet(`${userId}/publications`),
+  getFeed: userId => executeGet(`/publications`),
 };

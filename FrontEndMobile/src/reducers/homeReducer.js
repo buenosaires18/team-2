@@ -3,6 +3,9 @@ const homeReducer = (state = {
 }, action) => {
   let newState;
   switch (action.type) {
+    case 'GET_FEED_FULFILLED':
+      newState = { ...state, feed: action.payload}
+      break;
     default:
       newState = { ...state
       };

@@ -2,19 +2,11 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
 import homeActions from '../actions/homeActions';
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     backgroundColor: 'steelblue',
-//   },
-// });
+import PublicationCard from './PublicationCard';
 
 class Home extends React.Component {
-  componentWillReceiveProps() {
-    this.props.getFeed(this.props.user.id)
+  componentWillMount() {
+    this.props.getFeed(1)
   }
 
   render() {
@@ -40,6 +32,7 @@ class Home extends React.Component {
 }
 const mapStateToProps = state => ({
   feed: state.homeReducer.feed,
+  user: state.homeReducer.user,
 });
 
 const mapDispatchToProps = dispatch => ({
