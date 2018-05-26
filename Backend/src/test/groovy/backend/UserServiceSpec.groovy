@@ -78,5 +78,17 @@ class UserServiceSpec extends HibernateSpec implements ServiceUnitTest<UserServi
             def followedUsers = userService.getAllFollowedUsersBy(user.id)
             followedUsers.size() == 2
     }
-    
+
+
+    def "a user service can show al followed user specific"(){
+        when:
+            User aOtherUser= new User("Hunter","Tomás Hurrell","hurrelltomas@gmail.com","pass1234","tlh11")
+            userService.registerUser(user)
+            userService.registerUser(aOtherUser)
+            userService.followUser(user.id, aOtherUser.id)
+        then:
+             User recoveredUser = userService.getUser(user.id)
+             recoveredUser.following.contains(aOtherUser)
+    }
+
 }

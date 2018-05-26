@@ -28,6 +28,14 @@ class UserService {
     }
 
 
+    def followUser(long idUser1 , long idUser2){
+        User user = getUser(idUser1)
+        user.startFollowing(this.getUser(idUser2))
+        user.save()
+
+    }
+
+
     def followHashtag(long idUser, HashTag aHashTag){
         def user = getUser(idUser)
         user.addToHashTags(aHashTag)
