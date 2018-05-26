@@ -12,7 +12,7 @@ class PublicationController  extends RestfulController<Publication> {
 
 
     PublicationController() {
-        super()
+        super(Publication)
     }
 
     // Post =>   /publication
