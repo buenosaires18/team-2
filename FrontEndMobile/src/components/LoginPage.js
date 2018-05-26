@@ -1,5 +1,6 @@
 import React from 'react';
-import { KeyboardAvoidingView, StyleSheet, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet, TextInput, View, Button } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 import usernameImg from '../images/username.png';
 import passwordImg from '../images/password.png';
@@ -35,6 +36,8 @@ export default class LoginPage extends React.Component {
           withSecureTextEntry={true}
           onChangeText = { text => this.changePassword(text) }
         />
+        <Button title="Login" onPress={Actions.publication} />
+
         <View style= {{ flex: 1}}/>
       </KeyboardAvoidingView>
     );
