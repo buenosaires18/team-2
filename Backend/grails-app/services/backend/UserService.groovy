@@ -26,4 +26,8 @@ class UserService {
     def getUser(long userId) {
         User.findById(userId)
     }
+
+    def getAllFollowedUsersBy(long userId) {
+        getUser(userId).following
+    }
 }

@@ -33,4 +33,15 @@ class PublicationServiceSpec extends HibernateSpec implements ServiceUnitTest<Pu
             recoveredPublication.user           ==  publication.user
             recoveredPublication.id             !=  null
     }
+
+    def "A publication service can get a list of all publications made"() {
+        when:
+            user.save()
+            publicationService.savePublication(publication)
+            def publication2 = new Publication("Publication2","Publication2 introduction","Description2","Pescar",user)
+            publicationService.savePublication(publication2)
+        then:
+            def recoveredPublications = publicationService.getPublications()
+            recoveredPublications.size() == 2
+    }
 }

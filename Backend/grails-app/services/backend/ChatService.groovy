@@ -19,4 +19,10 @@ class ChatService {
         chatRecovered.addMessage(message)
         chatRecovered.save()
     }
+
+// TODO: if possible when Bidirectional chat is implemented >> void chatService.addMessageToUsersChat(long idUser1, long idUser2,Message aMessage)
+
+// TODO: if possible, when Bidirectional chat is implemented >> List<Chat> chatService.getAllChatsOfUser(long idUser)
+
+
 }
