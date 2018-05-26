@@ -7,12 +7,14 @@ class Publication {
     String description
     String company
     User   user
-    long   chatID
+    Chat   chat
 
     static belongsTo = User
 
+    static hasOne = [chat: Chat]
+
     static constraints = {
-        chatID     nullable:true
+//        chat     nullable:true
     }
 
     Publication(String title, String introduction, String description, String company, User user) {
@@ -21,6 +23,7 @@ class Publication {
         this.description    = description
         this.company        = company
         this.user           = user
+        this.chat           = new Chat(associatedPublication: this)
     }
 
 

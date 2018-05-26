@@ -2,14 +2,16 @@ package backend
 
 class Chat {
 
-    List<Message>   messages = []
+
+
+    Publication  associatedPublication
+    Set<Message> messages = new HashSet<>()
+
+    static hasMany =  [messages: Message]
+
+    static belongsTo = Publication
 
     static constraints = {
-    }
-    
-
-    Chat(Publication associatedPublication) {
-        this.associatedPublication = associatedPublication
     }
 
     def addMessage(Message message) {

@@ -11,6 +11,7 @@ class PublicationService {
 
     def savePublication(Publication publication) {
         publication.save(flush: true)
+        publication.chat.save()
     }
 
     def getPublications(List<Publication> publicationList) {

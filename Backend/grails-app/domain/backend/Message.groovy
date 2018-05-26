@@ -2,14 +2,17 @@ package backend
 
 class Message {
 
-    User    user
+    long    userId
     String  text
+    Chat    chat
+
+    static belongsTo = Chat
 
     static constraints = {
     }
 
-    Message(User user, String text) {
-        this.user = user
-        this.text = text
+    Message(long auserID, String text) {
+        this.userId = auserID
+        this.text   = text
     }
 }
